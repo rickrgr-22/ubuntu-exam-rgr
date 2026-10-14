@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e95420" />
+    <title>Ubuntu Desktop Exam Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="ubuntu-mark">●</span> Ubuntu Exam Lab</div>
+        <nav aria-label="Navegación principal">
+          <button class="nav-button active" data-screen="desktop">Escritorio</button>
+          <button class="nav-button" data-screen="practice">Práctica</button>
+          <button class="nav-button" data-screen="progress">Progreso</button>
+        </nav>
+        <div class="clock" id="clock" aria-label="Hora actual"></div>
+      </header>
+
+      <section id="desktop" class="screen active">
+        <aside class="launcher" aria-label="Aplicaciones">
+          <button class="app-icon" data-app="files" title="Archivos">🗀<span>Archivos</span></button>
+          <button class="app-icon" data-app="terminal" title="Terminal">▸_<span>Terminal</span></button>
+          <button class="app-icon" data-app="settings" title="Configuración">⚙<span>Ajustes</span></button>
+          <button class="app-icon" data-app="help" title="Guía">?<span>Guía</span></button>
+        </aside>
+
+        <section class="desktop-content">
+          <div class="welcome-card">
+            <p class="eyebrow">LABORATORIO INTERACTIVO</p>
+            <h1>Domina Ubuntu Desktop<br />antes de tu examen.</h1>
+            <p>Explora un escritorio simulado, ejecuta comandos seguros y recibe explicaciones claras al practicar.</p>
+            <button class="primary-button" data-go-practice>Comenzar práctica →</button>
+          </div>
+          <div class="desktop-shortcuts">
+            <button class="shortcut" data-app="files">🗀<span>Carpeta personal</span></button>
+            <button class="shortcut" data-app="terminal">▸_<span>Terminal</span></button>
+            <button class="shortcut" data-app="help">?<span>Ubuntu Help</span></button>
+          </div>
+        </section>
+
+        <div class="window hidden" id="files-window" role="dialog" aria-labelledby="files-title">
+          <div class="window-bar"><strong id="files-title">Archivos — Usuario</strong><button class="close-window" aria-label="Cerrar">×</button></div>
+          <div class="file-layout">
+            <aside><b>Ubicaciones</b><button class="file-nav active">⌂ Inicio</button><button class="file-nav">▣ Escritorio</button><button class="file-nav">▤ Documentos</button><button class="file-nav">⬇ Descargas</button><button class="file-nav">♻ Papelera</button></aside>
+            <div class="file-grid">
+              <div>📁<span>Documentos</span></div><div>📁<span>Descargas</span></div><div>📁<span>Imágenes</span></div>
+              <div>📄<span>notas-examen.txt</span></div><div>📄<span>.bashrc</span></div>
+            </div>
+          </div>
+          <p class="window-tip"><b>Tip:</b> Los archivos que empiezan por <code>.</code> están ocultos. En Archivos usa <kbd>Ctrl</kbd> + <kbd>H</kbd> para mostrarlos.</p>
+        </div>
+
+        <div class="window terminal-window hidden" id="terminal-window" role="dialog" aria-labelledby="terminal-title">
+          <div class="window-bar"><strong id="terminal-title">Terminal</strong><button class="close-window" aria-label="Cerrar">×</button></div>
+          <div class="terminal-output" id="terminal-output" aria-live="polite">Bienvenido al terminal de práctica Ubuntu.
+Escribe <span class="terminal-accent">help</span> para ver los comandos disponibles. Nada cambiará tu equipo real.
+</div>
+          <form id="terminal-form"><label for="terminal-input">estudiante@ubuntu:~$</label><input id="terminal-input" autocomplete="off" spellcheck="false" autofocus /></form>
+        </div>
+
+        <div class="window settings-window hidden" id="settings-window" role="dialog" aria-labelledby="settings-title">
+          <div class="window-bar"><strong id="settings-title">Configuración</strong><button class="close-window" aria-label="Cerrar">×</button></div>
+          <h2>Configuración rápida</h2>
+          <div class="setting-row"><span>🌐 Red</span><b>Conectada</b></div>
+          <div class="setting-row"><span>🔊 Sonido</span><input type="range" value="65" aria-label="Volumen" /></div>
+          <div class="setting-row"><span>◐ Apariencia</span><button id="theme-toggle">Cambiar tema</button></div>
+          <p class="window-tip"><b>Tip:</b> La configuración del sistema se abre desde el menú del sistema o buscando “Configuración” en Actividades.</p>
+        </div>
+
+        <div class="window help-window hidden" id="help-window" role="dialog" aria-labelledby="help-title">
+          <div class="window-bar"><strong id="help-title">Guía de Ubuntu</strong><button class="close-window" aria-label="Cerrar">×</button></div>
+          <h2>Atajos esenciales</h2>
+          <ul class="shortcut-list">
+            <li><kbd>Super</kbd> abre la vista de Actividades para buscar aplicaciones.</li>
+            <li><kbd>Alt</kbd> + <kbd>Tab</kbd> cambia entre ventanas abiertas.</li>
+            <li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> abre Terminal.</li>
+            <li><kbd>Super</kbd> + <kbd>L</kbd> bloquea la sesión.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="practice" class="screen">
+        <div class="practice-header">
+          <div><p class="eyebrow">EXAMEN: USING UBUNTU DESKTOP</p><h1>Práctica adaptativa</h1><p>Responde, recibe una explicación y refuerza el concepto antes de continuar.</p></div>
+          <div class="score-pill"><span id="correct-count">0</span> correctas <small>de <span id="answered-count">0</span> respondidas</small></div>
+        </div>
+        <div class="practice-layout">
+          <aside class="topic-panel">
+            <h2>Temas</h2>
+            <div id="topic-list"></div>
+            <button class="outline-button" id="reset-progress">Reiniciar progreso</button>
+          </aside>
+          <article class="quiz-card">
+            <div class="quiz-meta"><span id="question-topic"></span><span id="question-number"></span></div>
+            <div class="progress-track"><div id="quiz-progress"></div></div>
+            <h2 id="question-text"></h2>
+            <div id="options" class="options"></div>
+            <div class="feedback hidden" id="feedback" aria-live="polite"></div>
+            <button class="primary-button hidden" id="next-question">Siguiente pregunta →</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="progress" class="screen">
+        <div class="progress-page">
+          <p class="eyebrow">TU PREPARACIÓN</p><h1>Panel de progreso</h1>
+          <div class="metrics">
+            <div class="metric"><strong id="metric-answered">0</strong><span>preguntas contestadas</span></div>
+            <div class="metric"><strong id="metric-accuracy">—</strong><span>precisión actual</span></div>
+            <div class="metric"><strong id="metric-streak">0</strong><span>mejor racha</span></div>
+          </div>
+          <div class="study-plan">
+            <h2>Ruta recomendada</h2>
+            <ol>
+              <li><b>Explora el escritorio:</b> abre Archivos, Ajustes y Terminal desde el simulador.</li>
+              <li><b>Practica en bloques:</b> estudia un tema hasta obtener al menos 80% de precisión.</li>
+              <li><b>Repite tus errores:</b> cada explicación incluye el porqué y un tip transferible al examen.</li>
+              <li><b>Simula condiciones reales:</b> explica en voz alta qué harías antes de elegir una respuesta.</li>
+            </ol>
+          </div>
+          <div id="topic-progress" class="topic-progress"></div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
